@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native'
+import { View, Text, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'; 
 import { createStackNavigator } from '@react-navigation/stack'; 
 
@@ -66,7 +66,7 @@ export class App extends Component {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Main">
+          <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Main" component={Main} options={{ headerShown: false }}/>
               <Stack.Screen name="Create" component={Create} navigation={this.props.navigation} options={{ headerShown: false }}/>
               <Stack.Screen name="Save" component={Save} navigation={this.props.navigation} options={{ headerShown: false }}/>

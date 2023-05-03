@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Image, FlatList, Button } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList, Button, TouchableOpacity } from 'react-native'
 import { db, auth, store, firebase } from '../../Firebase/firebase'
+import ProfileButton from './ProfileButton'
 require('firebase/firestore')
 
 import { connect } from 'react-redux'
@@ -77,19 +78,18 @@ function Profile(props) {
   return (
     <View style={styles.container}>
         <View style={styles.containerInfo}>
-          <Text>Profile</Text>
-          <Text>{user.name}</Text>
-
+          <Text style={styles.userName}>{user.name}</Text>
+          <Text style={styles.padding}></Text>
           {props.route.params.uid !== auth.currentUser.uid ? (
             <View>
               {following ?  (
-                <Button title="Following" onPress={() => onUnfollow()}/>
+                <ProfileButton title="Following" onPress={() => onUnfollow()} color="#000" />
               ) : (
-                <Button title="Follow" onPress={() => onFollow()}/>
+                <ProfileButton title="Follow" onPress={() => onFollow()} />
               )}
             </View>
           ) : 
-            <Button title="Sign Out" onPress={() => onSignOut()}/>
+            <ProfileButton title="Sign Out" onPress={() => onSignOut()} />
           }
         </View>
 
@@ -115,6 +115,7 @@ function Profile(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 50,
   },
   containerInfo: {
     margin: 20,
@@ -124,10 +125,20 @@ const styles = StyleSheet.create({
   },
   containerImage: {
     flex: 1/3,
+    borderWidth: 1,
+    borderColor: 'white',
   },
   image: {
     flex: 1,
     aspectRatio: 1/1,
+  },
+  userName: {
+    fontFamily: 'Georgia',
+    textAlign: 'center',
+    fontSize: 24,
+  }, 
+  padding: {
+    padding: 2,
   }
 })
 

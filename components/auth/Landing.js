@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#D9D9D9', 
+        backgroundColor: '#FFFFFF', 
         alignItems: 'center', 
     },
     logo: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         marginTop: 20, 
     },
     button: {
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#FFFFFF',
         paddingVertical: 20,
         paddingHorizontal: 20,
         borderRadius: 5,

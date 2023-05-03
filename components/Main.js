@@ -35,7 +35,15 @@ export class Main extends Component {
             )
         }
         return (
-            <Tab.Navigator initialRouteName="Feed" labeled={false}>
+            <Tab.Navigator initialRouteName="Feed" labeled={false} 
+            barStyle={{ position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
                 <Tab.Screen name="Feed" component={Feed}
                     options={{
                         tabBarIcon: ({ color, size }) => (

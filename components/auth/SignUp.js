@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Button, TextInput, StyleSheet } from 'react-native'
+import { View, Button, TextInput, StyleSheet, Text } from 'react-native'
 import { auth, db } from '../../Firebase/firebase'
+import SignButton from './SignButton';
 
 export class SignUp extends Component {
 
@@ -35,24 +36,25 @@ export class SignUp extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <TextInput
+            <TextInput style={styles.input}
                 placeholder='name'
                 onChangeText={(name) => this.setState({name})}
             />
-            <TextInput
+            <TextInput style={styles.input}
                 placeholder='email'
                 onChangeText={(email) => this.setState({email})}
             />
-            <TextInput
+            <TextInput style={styles.input}
                 placeholder='password'
                 secureTextEntry={true}
                 onChangeText={(password) => this.setState({password})}
             />
-            
-            <Button
+            <Text style={styles.padding}></Text>
+            <SignButton 
                 onPress={() => this.onSignUp()}
                 title="Sign Up"
             />
+            <Text style={styles.padding}></Text>
         </View>
         )
     }
@@ -62,21 +64,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#D9D9D9', 
+        backgroundColor: '#FFFFFF', 
         alignItems: 'center', 
-    },
-    logo: {
-        width: 300, 
-        height: 75,
-        alignSelf: 'center',
-        position: 'absolute',
-        top: 100,
     },
     buttonContainer: {
         marginTop: 20, 
     },
     button: {
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#FFFFFF',
         paddingVertical: 20,
         paddingHorizontal: 20,
         borderRadius: 5,
@@ -88,6 +83,18 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
     },
+    input: {
+      width: '80%',
+      borderBottomWidth: 1, 
+      borderBottomColor: 'black',
+      fontFamily: 'Georgia',
+      height: 50,
+      fontSize: 20,
+      marginTop: 30,
+    },
+    padding: {
+        padding: 15,
+    }
 })
 
 export default SignUp

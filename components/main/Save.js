@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { View, TextInput, Image, Button } from 'react-native'
+import { View, TextInput, Image, Button, StyleSheet, Text } from 'react-native'
 import { db, auth, store, firebase } from '../../Firebase/firebase'
 require("firebase/firestore")
+import CreateButton from './CreateButton'
 // require("firebase/firebase-storage")
 
 export default function Save(props, { navigation }) {
@@ -61,15 +62,38 @@ export default function Save(props, { navigation }) {
           });
       }      
     return (
-        <View style={{flex: 1}}>
+        <View style={styles.container}>
             <Image source={{uri: props.route.params.image}}/>
-            <TextInput placeholder='Restaurant Name' onChangeText={(name) => setName(name)}/>
-            <TextInput placeholder='Restaurant Location' onChangeText={(location) => setLocation(location)}/>
-            <TextInput placeholder='Description' onChangeText={(desc) => setDesc(desc)}/>
-            <TextInput placeholder='Rating out of five' onChangeText={(rating) => setRating(rating)}/>
-            
-
-            <Button title="Post" onPress={() => uploadImage()}/>
-        </View>
+            <TextInput placeholder='Restaurant Name' style={styles.input} onChangeText={(name) => setName(name)}/>
+            <TextInput placeholder='Restaurant Location' style={styles.input} onChangeText={(location) => setLocation(location)}/>
+            <TextInput placeholder='Description' style={styles.input} onChangeText={(desc) => setDesc(desc)}/>
+            <TextInput placeholder='Rating out of five' style={styles.input} onChangeText={(rating) => setRating(rating)}/>
+            <Text style={styles.padding}></Text>
+            <CreateButton title="Post" onPress={() => uploadImage()} />
+            <Text style={styles.padding1}></Text>
+          </View>
     )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  input: {
+    width: "80%",
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    fontFamily: "Georgia",
+    height: 50,
+    fontSize: 20,
+    marginTop: 30,
+  },
+  padding: {
+    padding: 10,
+  },
+  padding1: {
+    padding: 100,
+  }
+})

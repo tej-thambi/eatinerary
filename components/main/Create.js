@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, Button, Image } from 'react-native'
+import { View, Text, Button, Image, StyleSheet } from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
+import CreateButton from './CreateButton'
 
 export default function Create({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -34,9 +35,19 @@ export default function Create({ navigation }) {
   };
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={styles.padding}></Text>
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      <Button title="Save" onPress={() => navigation.navigate('Save', {image})} />
+      <Text style={styles.padding}></Text>
+      <CreateButton title="Pick an image from camera roll" onPress={pickImage} />
+      <Text style={styles.padding}></Text>
+      <CreateButton title="Continue" onPress={() => navigation.navigate('Save', {image})} />
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  padding: {
+    padding: 2,
+  }
+})

@@ -24,14 +24,14 @@ export default function Search(props) {
 
     return (
         <View style={styles.container}>
-            <TextInput placeholder='Search for users' onChangeText={(search) => fetchUsers(search)}/>
+            <TextInput placeholder='Search' style={styles.searchBox} onChangeText={(search) => fetchUsers(search)}/>
             <FlatList
                 numColumns={1}
                 horizontal={false}
                 data={users}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => {props.navigation.navigate("Profile", {uid: item.id})}}>
-                        <Text>{item.name}</Text>
+                        <Text style={styles.searchResult}>{item.name}</Text>
                     </TouchableOpacity>
                 )}
             />
@@ -41,8 +41,25 @@ export default function Search(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 80,
-  }
-})
+    container: {
+      flex: 1,
+      marginTop: 100,
+      marginLeft: 60,
+    },
+    searchBox: {
+      width: '80%',
+      borderBottomWidth: 1, 
+      borderBottomColor: 'black',
+      fontFamily: 'Georgia',
+      height: 50,
+      fontSize: 20,
+      marginTop: 30,
+    },
+    searchResult: {
+      fontFamily: 'Georgia',
+      fontSize: 16,
+      textAlign: 'left',
+      width: '100%',
+      marginTop: 10,
+    }
+  })
