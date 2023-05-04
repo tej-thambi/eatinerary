@@ -36,7 +36,9 @@ export default function Create({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={styles.padding}></Text>
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      <View style={styles.imageContainer}>
+        {image && <Image source={{ uri: image }} style={styles.image} />}
+      </View>
       <Text style={styles.padding}></Text>
       <CreateButton title="Pick an image from camera roll" onPress={pickImage} />
       <Text style={styles.padding}></Text>
@@ -49,5 +51,20 @@ export default function Create({ navigation }) {
 const styles = StyleSheet.create({
   padding: {
     padding: 2,
-  }
+  },
+  imageContainer: {
+    width: 350,
+    height: 350,
+    padding: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: 'black',
+    overflow: 'hidden'
+  },
+  image: {
+    width: '100%',  
+    height: '100%',
+    objectFit: 'cover'  
+  }  
 })

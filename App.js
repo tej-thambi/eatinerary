@@ -9,6 +9,8 @@ import SignIn from './components/auth/SignIn'
 import Main from './components/Main';
 import Create from './components/main/Create';
 import Save from './components/main/Save';
+import PostOrPlan from './components/main/PostOrPlan'
+import CreatePlan from './components/main/CreatePlan'
 
 import {auth} from './Firebase/firebase'
 
@@ -68,8 +70,11 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
               <Stack.Screen name="Main" component={Main} options={{ headerShown: false }}/>
+              {/* <Stack.Screen name="Create" component={Create} navigation={this.props.navigation} options={{ headerShown: false }}/> */}
+              <Stack.Screen name="PostOrPlan" component={PostOrPlan} navigation={this.props.navigation} options={{ headerShown: false }}/>
               <Stack.Screen name="Create" component={Create} navigation={this.props.navigation} options={{ headerShown: false }}/>
               <Stack.Screen name="Save" component={Save} navigation={this.props.navigation} options={{ headerShown: false }}/>
+              <Stack.Screen name="CreatePlan" component={CreatePlan} navigation={this.props.navigation} options={{ headerShown: false }}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

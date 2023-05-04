@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchUser, fetchUserPosts, fetchUserFollowing, clearData } from '../redux/actions'
+import { fetchUser, fetchUserPosts, fetchUserPlans, fetchUserFollowing, clearData } from '../redux/actions'
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Feed from './main/Feed'
 import Profile from './main/Profile'
 import Search from './main/Search'
+import Plans from './main/Plans'
 import { auth } from '../Firebase/firebase'
 const Empty = () => {
     return(null);
@@ -60,12 +61,18 @@ export class Main extends Component {
                     listeners={({navigation}) =>({
                         tabPress: event => {
                             event.preventDefault();
-                            navigation.navigate("Create")
+                            navigation.navigate("PostOrPlan")
                         }
                     })}
                     options={{
                         tabBarIcon: ({ color, size }) => (
                             <MaterialCommunityIcons name="plus-box" color={color} size={26} />
+                        ),
+                    }}/>
+                <Tab.Screen name="Plans" component={Plans} navigation={this.props.navigation }
+                    options={{
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="calendar-blank" color={color} size={26} />
                         ),
                     }}/>
                 <Tab.Screen name="Profile" component={Profile}

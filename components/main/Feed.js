@@ -30,6 +30,33 @@ function Feed(props) {
 
   }, [props.usersLoaded] )
   
+  const ChefHats = ({ rating }) => {
+    const filledHats = Math.floor(rating);
+    const emptyHats = 5 - filledHats;
+  
+    const filledHatsArray = Array.from({ length: filledHats }, (_, i) => i);
+    const emptyHatsArray = Array.from({ length: emptyHats }, (_, i) => i);
+  
+    return (
+      <View style={styles.chefHatsContainer}>
+        {filledHatsArray.map((i) => (
+          <Image
+            key={`filledHat-${i}`}
+            style={styles.chefHat}
+            source={require('../../assets/imgs/hat-filled2.png')}
+          />
+        ))}
+        {emptyHatsArray.map((i) => (
+          <Image
+            key={`emptyHat-${i}`}
+            style={styles.chefHat}
+            source={require('../../assets/imgs/hat.png')}
+          />
+        ))}
+      </View>
+    );
+  };  
+
   return (
     <View style={styles.container}>
         <View style={styles.containerGallery}>
@@ -51,6 +78,8 @@ function Feed(props) {
                   <Text style={styles.postDate}>{item.creation.toDate().toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</Text>
                   <Text style={styles.padding1}></Text>
                   <Text style={styles.postDesc}>{item.desc}</Text>
+                  <Text style={styles.padding1}></Text>
+                  <ChefHats rating={item.rating} />
                 </View>
               )}
            />
@@ -125,7 +154,17 @@ const styles = StyleSheet.create({
   },
   padding1: {
     padding: 1,
-  }
+  },
+  chefHatsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  chefHat: {
+    width: 55,
+    height: 55,
+    marginRight: 5,
+    marginLeft: 2,
+  },
 })
 
 const mapStateToProps = (store) => ({
